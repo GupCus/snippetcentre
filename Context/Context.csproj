@@ -7,12 +7,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="xmlSnippetCentre.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="xmlSnippetCentre.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Clases\Clases.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="dsLenguajes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsLenguajes.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="dsLenguajes.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLenguajes.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

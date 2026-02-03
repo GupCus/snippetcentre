@@ -9,8 +9,15 @@ namespace Context
 {
     public static class LenguajeRepository
     {
+        public static dsLenguajes Lenguajes = new();
+
+        public static dsLenguajes.dtLenguajesDataTable dtLenguajes = new();
+
+        public static dsLenguajes.dtSnippetsDataTable dtSnippets = new();
+
         public static async Task CrearLenguajeAsync(Lenguaje lenguaje)
         {
+
             using (SnippetsCentreContext bd = new())
             {
                 bd.Lenguajes.Add(lenguaje);
