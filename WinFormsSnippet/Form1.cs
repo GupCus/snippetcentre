@@ -1,6 +1,5 @@
 using Clases;
 using Context;
-using System.Collections.ObjectModel;
 
 namespace WinFormsSnippet
 {
@@ -26,7 +25,7 @@ namespace WinFormsSnippet
         {
             InitializeComponent();
             buttonNvoSnippet.Visible = false;
-            
+
         }
         private async void FormPrincipal_Load(object sender, EventArgs e)
         {
@@ -334,7 +333,7 @@ namespace WinFormsSnippet
                         textBox.Dispose();
                         ev.SuppressKeyPress = true;
                         await LenguajeRepository.ActualizarLenguajeAsync(l);
-                        
+
                     }
                     else if (ev.KeyCode == Keys.Escape)
                     {
@@ -356,7 +355,7 @@ namespace WinFormsSnippet
 
         private async void btnEliminarSnippet_Click(object sender, EventArgs e, Lenguaje l, Snippet s)
         {
-            if (MessageBox.Show("Desea eliminar el snippet?", "Confirmar", MessageBoxButtons.OKCancel) == DialogResult.OK) { await LenguajeRepository.EliminarSnippetAsync(l.Id!.Value,s.Id!.Value); }
+            if (MessageBox.Show("Desea eliminar el snippet?", "Confirmar", MessageBoxButtons.OKCancel) == DialogResult.OK) { await LenguajeRepository.EliminarSnippetAsync(l.Id!.Value, s.Id!.Value); }
             await MostrarSnippets(l);
         }
 

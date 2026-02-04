@@ -1,9 +1,4 @@
 ﻿using Clases;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Context
 {
@@ -26,12 +21,12 @@ namespace Context
         }
         public static async Task GuardarDatos()
         {
-            await Task.Run(()=> Lenguajes.WriteXml(rutaxml));
+            await Task.Run(() => Lenguajes.WriteXml(rutaxml));
         }
 
         public static async Task CrearLenguajeAsync(Lenguaje lenguaje)
         {
-            
+
             var nuevoLenguaje = Lenguajes.dtLenguajes.NewdtLenguajesRow();
             nuevoLenguaje.Nombre = lenguaje.Nombre;
             Lenguajes.dtLenguajes.AdddtLenguajesRow(nuevoLenguaje);
@@ -51,9 +46,11 @@ namespace Context
 
         public static async Task<List<Lenguaje>> EncontrarLenguajesAsync()
         {
-            return await Task.Run(() => {
+            return await Task.Run(() =>
+            {
                 List<Lenguaje> listaLenguajes = Lenguajes.dtLenguajes
-                .Select(row => {
+                .Select(row =>
+                {
                     var l = new Lenguaje
                     {
                         Id = row.Id,
@@ -96,7 +93,7 @@ namespace Context
                 }
                 return null;
             }
-            
+
             );
         }
 

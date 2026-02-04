@@ -6,7 +6,18 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyTitle>SnippetCentre</AssemblyTitle>
+    <ApplicationIcon>CP081.ico</ApplicationIcon>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <StartupObject>WinFormsSnippet.Program</StartupObject>
+	<DebugType>none</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="CP081.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Clases\Clases.csproj" />
