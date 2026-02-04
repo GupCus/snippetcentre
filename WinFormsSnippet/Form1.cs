@@ -94,7 +94,7 @@ namespace WinFormsSnippet
         public async Task MostrarSnippets(Lenguaje lenguaje)
         {
             flowSnippets.Controls.Clear();
-            lenguaje = await LenguajeRepository.EncontrarLenguajeAsync(lenguaje.Id);
+            lenguaje = await LenguajeRepository.EncontrarLenguajeAsync(lenguaje.Id!.Value);
             if (lenguaje.Snippets.Count == 0)
             {
                 var labelVacio = new Label
@@ -219,7 +219,7 @@ namespace WinFormsSnippet
 
         private async void buttonNvoSnippet_Click(object sender, EventArgs e, Lenguaje l)
         {
-            await LenguajeRepository.CrearSnippetAsync(l.Id, new Snippet
+            await LenguajeRepository.CrearSnippetAsync(l.Id!.Value, new Snippet
             {
                 Titulo = "Nuevo Snippet",
                 Codigo = "// Escribe tu código aquí",
@@ -349,14 +349,14 @@ namespace WinFormsSnippet
 
         private async void btnEliminarLenguaje_Click(object sender, EventArgs e, Lenguaje l)
         {
-            if (MessageBox.Show("Desea eliminar el lenguaje?", "Confirmar", MessageBoxButtons.OKCancel) == DialogResult.OK) { await LenguajeRepository.EliminarLenguajeAsync(l.Id); }
+            if (MessageBox.Show("Desea eliminar el lenguaje?", "Confirmar", MessageBoxButtons.OKCancel) == DialogResult.OK) { await LenguajeRepository.EliminarLenguajeAsync(l.Id!.Value); }
             await CargarSnippets();
             DesactivarBoton();
         }
 
         private async void btnEliminarSnippet_Click(object sender, EventArgs e, Lenguaje l, Snippet s)
         {
-            if (MessageBox.Show("Desea eliminar el snippet?", "Confirmar", MessageBoxButtons.OKCancel) == DialogResult.OK) { await LenguajeRepository.EliminarSnippetAsync(l.Id,s.Id); }
+            if (MessageBox.Show("Desea eliminar el snippet?", "Confirmar", MessageBoxButtons.OKCancel) == DialogResult.OK) { await LenguajeRepository.EliminarSnippetAsync(l.Id!.Value,s.Id!.Value); }
             await MostrarSnippets(l);
         }
 

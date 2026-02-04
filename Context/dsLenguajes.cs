@@ -1,3 +1,7 @@
 ﻿namespace Context
 {
 }
+
+namespace Context
+{
+}

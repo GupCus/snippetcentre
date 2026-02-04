@@ -12,27 +12,27 @@
   <xs:element name="dsLenguajes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsLenguajes" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsLenguajes">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="dtLenguajes" msprop:Generator_RowClassName="dtLenguajesRow" msprop:Generator_RowEvHandlerName="dtLenguajesRowChangeEventHandler" msprop:Generator_RowDeletedName="dtLenguajesRowDeleted" msprop:Generator_RowDeletingName="dtLenguajesRowDeleting" msprop:Generator_RowEvArgName="dtLenguajesRowChangeEvent" msprop:Generator_TablePropName="dtLenguajes" msprop:Generator_RowChangedName="dtLenguajesRowChanged" msprop:Generator_UserTableName="dtLenguajes" msprop:Generator_RowChangingName="dtLenguajesRowChanging" msprop:Generator_TableClassName="dtLenguajesDataTable" msprop:Generator_TableVarName="tabledtLenguajes">
+        <xs:element name="dtLenguajes" msprop:Generator_RowEvHandlerName="dtLenguajesRowChangeEventHandler" msprop:Generator_RowDeletedName="dtLenguajesRowDeleted" msprop:Generator_RowDeletingName="dtLenguajesRowDeleting" msprop:Generator_RowEvArgName="dtLenguajesRowChangeEvent" msprop:Generator_TablePropName="dtLenguajes" msprop:Generator_RowChangedName="dtLenguajesRowChanged" msprop:Generator_UserTableName="dtLenguajes" msprop:Generator_RowChangingName="dtLenguajesRowChanging" msprop:Generator_RowClassName="dtLenguajesRow" msprop:Generator_TableClassName="dtLenguajesDataTable" msprop:Generator_TableVarName="tabledtLenguajes">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="2" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" type="xs:int" />
-              <xs:element name="Nombre" msprop:Generator_UserColumnName="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="2" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" type="xs:int" />
+              <xs:element name="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_UserColumnName="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="dtSnippets" msprop:Generator_RowClassName="dtSnippetsRow" msprop:Generator_RowEvHandlerName="dtSnippetsRowChangeEventHandler" msprop:Generator_RowDeletedName="dtSnippetsRowDeleted" msprop:Generator_RowDeletingName="dtSnippetsRowDeleting" msprop:Generator_RowEvArgName="dtSnippetsRowChangeEvent" msprop:Generator_TablePropName="dtSnippets" msprop:Generator_RowChangedName="dtSnippetsRowChanged" msprop:Generator_UserTableName="dtSnippets" msprop:Generator_RowChangingName="dtSnippetsRowChanging" msprop:Generator_TableClassName="dtSnippetsDataTable" msprop:Generator_TableVarName="tabledtSnippets">
+        <xs:element name="dtSnippets" msprop:Generator_RowEvHandlerName="dtSnippetsRowChangeEventHandler" msprop:Generator_RowDeletedName="dtSnippetsRowDeleted" msprop:Generator_RowDeletingName="dtSnippetsRowDeleting" msprop:Generator_RowEvArgName="dtSnippetsRowChangeEvent" msprop:Generator_TablePropName="dtSnippets" msprop:Generator_RowChangedName="dtSnippetsRowChanged" msprop:Generator_UserTableName="dtSnippets" msprop:Generator_RowChangingName="dtSnippetsRowChanging" msprop:Generator_RowClassName="dtSnippetsRow" msprop:Generator_TableClassName="dtSnippetsDataTable" msprop:Generator_TableVarName="tabledtSnippets">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" type="xs:int" />
-              <xs:element name="IdLenguaje" msprop:Generator_UserColumnName="IdLenguaje" msprop:Generator_ColumnPropNameInTable="IdLenguajeColumn" msprop:Generator_ColumnPropNameInRow="IdLenguaje" msprop:Generator_ColumnVarNameInTable="columnIdLenguaje" type="xs:int" minOccurs="0" />
-              <xs:element name="Titulo" msprop:Generator_UserColumnName="Titulo" msprop:Generator_ColumnPropNameInTable="TituloColumn" msprop:Generator_ColumnPropNameInRow="Titulo" msprop:Generator_ColumnVarNameInTable="columnTitulo" type="xs:string" minOccurs="0" />
-              <xs:element name="Codigo" msprop:Generator_UserColumnName="Codigo" msprop:Generator_ColumnPropNameInTable="CodigoColumn" msprop:Generator_ColumnPropNameInRow="Codigo" msprop:Generator_ColumnVarNameInTable="columnCodigo" type="xs:string" minOccurs="0" />
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" type="xs:int" />
+              <xs:element name="IdLenguaje" msprop:Generator_ColumnPropNameInTable="IdLenguajeColumn" msprop:Generator_ColumnPropNameInRow="IdLenguaje" msprop:Generator_UserColumnName="IdLenguaje" msprop:Generator_ColumnVarNameInTable="columnIdLenguaje" type="xs:int" minOccurs="0" />
+              <xs:element name="Titulo" msprop:Generator_ColumnPropNameInTable="TituloColumn" msprop:Generator_ColumnPropNameInRow="Titulo" msprop:Generator_UserColumnName="Titulo" msprop:Generator_ColumnVarNameInTable="columnTitulo" type="xs:string" minOccurs="0" />
+              <xs:element name="Codigo" msprop:Generator_ColumnPropNameInTable="CodigoColumn" msprop:Generator_ColumnPropNameInRow="Codigo" msprop:Generator_UserColumnName="Codigo" msprop:Generator_ColumnVarNameInTable="columnCodigo" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1">
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:dtLenguajes" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
@@ -43,7 +43,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="listaSnippets" msdata:parent="dtLenguajes" msdata:child="dtSnippets" msdata:parentkey="Id" msdata:childkey="IdLenguaje" msprop:Generator_UserParentTable="dtLenguajes" msprop:Generator_UserChildTable="dtSnippets" msprop:Generator_RelationVarName="relationlistaSnippets" msprop:Generator_ChildPropName="GetdtSnippetsRows" msprop:Generator_UserRelationName="listaSnippets" msprop:Generator_ParentPropName="dtLenguajesRow" />
+      <msdata:Relationship name="listaSnippets" msdata:parent="dtLenguajes" msdata:child="dtSnippets" msdata:parentkey="Id" msdata:childkey="IdLenguaje" msprop:Generator_UserParentTable="dtLenguajes" msprop:Generator_UserChildTable="dtSnippets" msprop:Generator_RelationVarName="relationlistaSnippets" msprop:Generator_ChildPropName="GetdtSnippetsRows" msprop:Generator_ParentPropName="dtLenguajesRow" msprop:Generator_UserRelationName="listaSnippets" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

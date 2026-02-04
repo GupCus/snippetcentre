@@ -39,9 +39,9 @@ namespace Context
 
         }
 
-        public static async Task EliminarLenguajeAsync(int? id)
+        public static async Task EliminarLenguajeAsync(int id)
         {
-            var lenguaje = Lenguajes.dtLenguajes.FirstOrDefault(l => l.Id == id);
+            var lenguaje = Lenguajes.dtLenguajes.FindById(id);
             if (lenguaje != null)
             {
                 lenguaje.Delete();
@@ -73,11 +73,11 @@ namespace Context
             });
         }
 
-        public static async Task<Lenguaje?> EncontrarLenguajeAsync(int? idL)
+        public static async Task<Lenguaje?> EncontrarLenguajeAsync(int idL)
         {
             return await Task.Run(() =>
             {
-                var l1 = Lenguajes.dtLenguajes.FirstOrDefault(l => l.Id == idL);
+                var l1 = Lenguajes.dtLenguajes.FindById(idL);
                 if (l1 != null)
                 {
                     var l = new Lenguaje
@@ -102,67 +102,48 @@ namespace Context
 
         public static async Task ActualizarLenguajeAsync(Lenguaje l)
         {
-            using (SnippetsCentreContext bd = new())
+            var l1 = Lenguajes.dtLenguajes.FindById(l.Id!.Value);
+            if (l1 != null)
             {
-                Lenguaje? lenguajeact = await bd.Lenguajes.FindAsync(l.Id);
-                if (lenguajeact != null)
-                {
-                    lenguajeact.Nombre = l.Nombre;
-                    await bd.SaveChangesAsync();
-                }
+                l1.Nombre = l.Nombre;
+                await GuardarDatos();
             }
         }
 
-        public static async Task CrearSnippetAsync(int? idLenguaje, Snippet snippet)
+        public static async Task CrearSnippetAsync(int idLenguaje, Snippet snippet)
         {
-            using (SnippetsCentreContext bd = new())
+            var l1 = Lenguajes.dtLenguajes.FindById(idLenguaje);
+            if (l1 != null)
             {
-                Lenguaje? lenguajeact = await bd.Lenguajes
-                    .Include(len => len.Snippets)
-                    .FirstOrDefaultAsync(len => len.Id == idLenguaje);
-                
-                if (lenguajeact != null)
-                {
-                    lenguajeact.Snippets.Add(snippet);
-                    await bd.SaveChangesAsync();
-                }
+                var snip = Lenguajes.dtSnippets.NewdtSnippetsRow();
+                snip.Titulo = snippet.Titulo;
+                snip.Codigo = snippet.Codigo;
+                snip.IdLenguaje = idLenguaje;
+                Lenguajes.dtSnippets.AdddtSnippetsRow(snip);
+                await GuardarDatos();
             }
+
         }
 
         public static async Task ActualizarSnippetAsync(Snippet snippetActualizado)
         {
-            using (SnippetsCentreContext bd = new())
+            var snippet = Lenguajes.dtSnippets.FindById(snippetActualizado.Id!.Value);
+            if (snippet != null)
             {
-                Snippet? snippet = await bd.Set<Snippet>().FindAsync(snippetActualizado.Id);
-                
-                if (snippet != null)
-                {
-                    snippet.Titulo = snippetActualizado.Titulo;
-                    snippet.Codigo = snippetActualizado.Codigo;
-                    await bd.SaveChangesAsync();
-                }
+                snippet.Titulo = snippetActualizado.Titulo;
+                snippet.Codigo = snippetActualizado.Codigo;
+                await GuardarDatos();
             }
+
         }
 
-        public static async Task EliminarSnippetAsync(int? idLenguaje, int? idSnippet)
+        public static async Task EliminarSnippetAsync(int idLenguaje, int idSnippet)
         {
-            using (SnippetsCentreContext bd = new())
+            var snippet = Lenguajes.dtSnippets.FindById(idSnippet);
+            if (snippet != null)
             {
-                Lenguaje? lenguajeact = await bd.Lenguajes
-                    .Include(len => len.Snippets)
-                    .FirstOrDefaultAsync(len => len.Id == idLenguaje);
-
-                if (lenguajeact != null)
-                {
-                    Snippet? snippetElim = lenguajeact.Snippets
-                        .FirstOrDefault(s => s.Id == idSnippet);
-                    
-                    if (snippetElim != null)
-                    {
-                        lenguajeact.Snippets.Remove(snippetElim);
-                        await bd.SaveChangesAsync();
-                    }
-                }
+                snippet.Delete();
+                await GuardarDatos();
             }
         }
     }
