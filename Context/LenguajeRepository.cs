@@ -9,12 +9,13 @@ namespace Context
 {
     public static class LenguajeRepository
     {
-        public static async Task CrearLenguajeAsync(Lenguaje lenguaje)
+        public static async Task<Lenguaje> CrearLenguajeAsync(Lenguaje lenguaje)
         {
             using (SnippetsCentreContext bd = new())
             {
                 bd.Lenguajes.Add(lenguaje);
                 await bd.SaveChangesAsync();
+                return lenguaje;
             }
         }
 

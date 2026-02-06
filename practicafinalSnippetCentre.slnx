@@ -2,6 +2,7 @@
   <Folder Name="/Elementos de la solución/">
     <File Path="README.md" />
   </Folder>
+  <Project Path="API/API.csproj" Id="6acc2f39-dacf-4959-97ec-1cec8140c3ec" />
   <Project Path="Clases/Clases.csproj" />
   <Project Path="Context/Context.csproj" Id="7c99bf8f-244d-4230-80f7-126c35d6736d" />
   <Project Path="WinFormsSnippet/WinFormsSnippet.csproj" Id="dbda3c8c-b6ae-476c-83c8-3704278f2c0f" />
