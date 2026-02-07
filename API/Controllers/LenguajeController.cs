@@ -33,13 +33,50 @@ namespace API.Controllers
         {
             try
             {
+                len.Id = null;
                 var l = await LenguajeRepository.CrearLenguajeAsync(len);
-                return Created($"api/lenguaje/{l.Id}", l);
+                return CreatedAtAction(nameof(GetOne), new { id = l.Id }, l);
             }
-            catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+            catch (Exception)
             {
-                return Conflict("El lenguaje ya existe o viola una restricción de la base de datos.");
+                return Conflict("Hubo un problema con la base de datos");
             }
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Lenguaje l)
+        {
+            try
+            {
+                l.Id = id;
+                await LenguajeRepository.ActualizarLenguajeAsync(l);
+                return NoContent();
+            }
+            catch (NoEncontradoException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Hubo un problema con la solicitud");
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await LenguajeRepository.EliminarLenguajeAsync(id);
+                return NoContent();
+            }
+            catch (NoEncontradoException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Hubo un problema con la solicitud");
+            }
+        }
+
     }
 }
