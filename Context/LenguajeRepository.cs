@@ -1,9 +1,5 @@
 ﻿using Clases;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Context
 {
@@ -70,7 +66,7 @@ namespace Context
                     lenguajeact.Nombre = l.Nombre;
                     await bd.SaveChangesAsync();
                 }
-                else 
+                else
                 {
                     throw new NoEncontradoException("No se Encontró el Lenguaje");
                 }

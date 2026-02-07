@@ -28,7 +28,7 @@ namespace API.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id,Snippet Snip)
+        public async Task<IActionResult> Update(int id, Snippet Snip)
         {
             try
             {

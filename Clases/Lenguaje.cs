@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Clases
 {
@@ -10,9 +8,9 @@ namespace Clases
         public string Nombre { get; set; }
         public List<Snippet?> Snippets { get; set; } = new();
 
-        public Lenguaje() 
+        public Lenguaje()
         {
-            
+
         }
     }
 }
