@@ -1,0 +1,228 @@
+﻿@page "/"
+@using Clases
+@using Negocio
+
+<PageTitle>Casa 🏠</PageTitle>
+
+<div class="d-flex gap-4">
+    <h1>API Lenguajes</h1>
+    <button class="btn btn-success mt-2 mb-2" @onclick="() => { LenguajeSeleccionado = new(); modalLenguaje = true; }">Agregar lenguaje</button>
+</div>
+<div>
+
+    @if (lenguajes == null)
+    {
+        <p><em>Cargando...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var lenguaje in lenguajes)
+                {
+                    <tr>
+                        <td>@lenguaje.Id</td>
+                        <td>@lenguaje.Nombre</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" @onclick="() => { LenguajeSeleccionado = lenguaje; mostrarModal = true; }">Ver snippets...</button>
+                                <button class="btn btn-danger" @onclick="() => EliminarLenguaje(lenguaje.Id!.Value)">Eliminar lenguaje</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @if (mostrarModal)
+        {
+            <div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5); z-index: 1050;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5>Snippets de @LenguajeSeleccionado.Nombre</h5>
+                            <button class="btn btn-success mx-4 mb-2 " @onclick="() => { SnippetSeleccionado = new() { LenguajeId = LenguajeSeleccionado.Id!.Value }; modalSnippet = true; }">Agregar snippet</button>
+                            <button type="button" class="btn-close" @onclick="CerrarModal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            @if (LenguajeSeleccionado.Snippets.Count != 0)
+                            {
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Titulo</th>
+                                            <th>Contenido</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var snippet in LenguajeSeleccionado.Snippets)
+                                        {
+                                            <tr>
+                                                <td>@snippet.Id</td>
+                                                <td>@snippet.Titulo</td>
+                                                <td>@snippet.Codigo</td>
+                                                <td><button class="btn btn-danger" @onclick="() => EliminarSnippet(LenguajeSeleccionado.Id!.Value, snippet.Id!.Value)">Eliminar snippet</button></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            }
+                            else
+                            {
+                                <p>No hay snippets disponibles...</p>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        @if (modalLenguaje)
+        {
+            @if (LenguajeSeleccionado == null) { LenguajeSeleccionado = new(); }
+            <div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5); z-index: 1050;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        
+                        <div class="modal-header">
+                            <h5>Crear Lenguaje</h5>
+                            <button type="button" class="btn-close" @onclick="() => { modalLenguaje = false; }"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <EditForm Model="@LenguajeSeleccionado" OnValidSubmit="() => AgregarLenguaje(LenguajeSeleccionado)">
+                                <DataAnnotationsValidator />
+                                <div class="form-group mb-3">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <InputText id="nombre" class="form-control" @bind-Value="LenguajeSeleccionado.Nombre" />
+                                    <ValidationMessage For="@(() => LenguajeSeleccionado.Nombre)" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </EditForm>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (modalSnippet)
+        {
+            <div class="modal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5); z-index: 1060;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5>Crear snippet para @LenguajeSeleccionado.Nombre</h5>
+                            <button type="button" class="btn-close" @onclick="() => { modalSnippet = false; }"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <EditForm Model="@SnippetSeleccionado" OnValidSubmit="() => AgregarSnippet(SnippetSeleccionado)">
+                                <DataAnnotationsValidator />
+                                <div class="form-group mb-3">
+                                    <label for="titulo" class="form-label">Titulo</label>
+                                    <InputText id="titulo" class="form-control" @bind-Value="SnippetSeleccionado.Titulo" />
+                                    <ValidationMessage For="@(() => SnippetSeleccionado.Titulo)" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="codigo" class="form-label">Codigo</label>
+                                    <InputText id="codigo" class="form-control" @bind-Value="SnippetSeleccionado.Codigo" />
+                                    <ValidationMessage For="@(() => SnippetSeleccionado.Codigo)" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </EditForm>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    }
+</div>
+
+@code {
+    private List<Lenguaje> lenguajes;
+    private Lenguaje? LenguajeSeleccionado;
+    private Snippet? SnippetSeleccionado;
+    private Func<Task> OnSubmit;
+    private bool mostrarModal = false;
+    private bool modalLenguaje = false;
+    private bool modalSnippet = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarLenguajes();
+    }
+
+    private void CerrarModal()
+    {
+        mostrarModal = false;
+        LenguajeSeleccionado = null;
+    }
+    private async Task CargarLenguajes()
+    {
+        lenguajes = (await LenguajeNegocio.GetAll()).ToList();
+    }
+
+    private async Task EliminarLenguaje(int id)
+    {
+        await LenguajeNegocio.Delete(id);
+        await CargarLenguajes();
+    }
+    private async Task ActualizarLenguaje(Lenguaje l)
+    {
+        await LenguajeNegocio.Put(l);
+        await CargarLenguajes();
+        modalLenguaje = false;
+        LenguajeSeleccionado = null;
+    }
+
+    private async Task AgregarLenguaje(Lenguaje l)
+    {
+        await LenguajeNegocio.Post(l);
+        await CargarLenguajes();
+        modalLenguaje = false;
+        LenguajeSeleccionado = null;
+    }
+
+    private async Task AgregarSnippet(Snippet s)
+    {
+        await SnippetNegocio.Post(s);
+        await CargarLenguajes();
+        modalSnippet = false;
+        SnippetSeleccionado = null;
+        CerrarModal();
+    }
+
+    private async Task EliminarSnippet(int idLenguaje, int idSnippet)
+    {
+        await SnippetNegocio.Delete(idLenguaje, idSnippet);
+        await CargarLenguajes();
+        CerrarModal();
+    }
+    private async Task ActualizarSnippet(Snippet s)
+    {
+        await SnippetNegocio.Put(s);
+        await CargarLenguajes();
+        modalSnippet = false;
+        SnippetSeleccionado = null;
+    }
+}
